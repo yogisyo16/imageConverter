@@ -23,9 +23,18 @@ const triggerFileInput = () => {
 
 const onFileChange = (event: Event) => {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-        // The "!" tells TS: "I promise this is not null/undefined"
-        emit("file-selected", input.files[0]!);
+    const file = input.files?.[0];
+
+    if (file) {
+        const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+        if (!allowedTypes.includes(file.type)) {
+            alert("Please upload a JPG or PNG!");
+
+            input.value = "";
+            return;
+        }
+        emit("file-selected", file);
     }
 };
 </script>
@@ -38,14 +47,14 @@ const onFileChange = (event: Event) => {
             type="file"
             ref="fileInput"
             class="hidden"
-            accept="image/*"
+            accept=".jpg, .jpeg, .png, image/jpeg, image/png"
             @change="onFileChange"
         />
 
-        <p class="font-bold text-white">Image Optimizer</p>
+        <p class="font-bold text-white">Image Converter to Webp</p>
 
         <button
-            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition-colors disabled:bg-blue-300"
+            class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full drop-shadow-md drop-shadow-black hover:drop-shadow-lg transition-colors disabled:bg-blue-300"
             :disabled="isProcessing"
             @click="triggerFileInput"
         >
@@ -61,8 +70,8 @@ const onFileChange = (event: Event) => {
             />
         </div>
         <button
-            class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition-colors disabled:bg-green-300"
-            :disabled="isProcessingDownload"
+            class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-full drop-shadow-md drop-shadow-black hover:drop-shadow-lg transition-colors disabled:bg-gray-600 disabled:drop-shadow-none"
+            :disabled="isProcessingDownload || !image"
             @click="downloadWebp"
         >
             {{ isProcessingDownload ? "Downloading..." : "Download WebP" }}
