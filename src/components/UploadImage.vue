@@ -13,6 +13,7 @@ const props = defineProps<UploadImageProps>();
 // Define the event to send the file back to App.vue
 const emit = defineEmits<{
     (e: "file-selected", file: File): void;
+    (e: "delete-image"): void;
 }>();
 
 const fileInput = ref<HTMLInputElement | null>(null);
@@ -75,6 +76,13 @@ const onFileChange = (event: Event) => {
             @click="downloadWebp"
         >
             {{ isProcessingDownload ? "Downloading..." : "Download WebP" }}
+        </button>
+        <button
+            v-if="image"
+            @click="$emit('delete-image')"
+            class="bg-rose-900 hover:bg-rose-800 text-white font-bold py-2 px-6 rounded-full"
+        >
+            Delete Image
         </button>
     </div>
 </template>
