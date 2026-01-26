@@ -53,7 +53,7 @@ const handlePageChange = (page: string) => {
                         </button>
                         <div class="flex pl-5">
                             <button
-                                @click="emit('change-page', 'jpg-png')"
+                                @click="emit('change-page', 'help')"
                                 :class="[
                                     currentPage === 'help'
                                         ? 'bg-gray-950 text-white'
@@ -143,7 +143,7 @@ const handlePageChange = (page: string) => {
                         JPG to PNG
                     </button>
                     <button
-                        @click="emit('change-page', 'jpg-png')"
+                        @click="handlePageChange('help')"
                         :class="[
                             currentPage === 'help'
                                 ? 'bg-gray-950 text-white'

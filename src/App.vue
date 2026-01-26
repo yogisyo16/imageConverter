@@ -27,7 +27,7 @@ const currentPage = ref("webp");
                 v-else-if="currentPage === 'help'"
                 class="text-white font-bold"
             >
-                Add more please
+                YOU SHALL NOT PASS!!!!!
             </div>
         </main>
 
