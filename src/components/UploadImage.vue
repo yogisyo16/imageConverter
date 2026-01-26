@@ -71,7 +71,7 @@ const onFileChange = (event: Event) => {
             />
         </div>
         <button
-            class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-full drop-shadow-md drop-shadow-black hover:drop-shadow-lg transition-colors disabled:bg-gray-600 disabled:drop-shadow-none"
+            class="bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-6 rounded-full drop-shadow-md drop-shadow-black hover:drop-shadow-lg transition-colors disabled:bg-gray-600 disabled:drop-shadow-none disabled:text-gray-400"
             :disabled="isProcessingDownload || !image"
             @click="downloadWebp"
         >
