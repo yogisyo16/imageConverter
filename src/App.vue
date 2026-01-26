@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import UploadImage from "./components/UploadImage.vue";
+import AdComponent from "./components/AddComponent.vue";
 import { useImageConverter } from "./composables/ComposeUpload";
 import { useDownloadWebp } from "./composables/DownloadWebp";
 
@@ -53,6 +54,9 @@ const onDownloadRequested = () => {
             @file-selected="handleImageConversion"
         />
     </div>
+    <footer class="p-4 bg-gray-800">
+        <AdComponent />
+    </footer>
 </template>
 
 <style scoped></style>
