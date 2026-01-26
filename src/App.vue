@@ -43,20 +43,20 @@ const onDownloadRequested = () => {
 </script>
 
 <template>
-    <div
-        class="flex flex-col min-w-auto min-h-screen justify-center items-center gap-2 bg-gray-600"
-    >
-        <UploadImage
-            :image="previewUrl"
-            :is-processing="isProcessing"
-            :is-processing-download="isDownloading"
-            :download-webp="onDownloadRequested"
-            @file-selected="handleImageConversion"
-        />
+    <div class="flex flex-col min-h-screen bg-gray-600">
+        <main class="flex grow items-center justify-center">
+            <UploadImage
+                :image="previewUrl"
+                :is-processing="isProcessing"
+                :is-processing-download="isDownloading"
+                :download-webp="onDownloadRequested"
+                @file-selected="handleImageConversion"
+            />
+        </main>
+        <footer class="p-4 bg-gray-800">
+            <AdComponent />
+        </footer>
     </div>
-    <footer class="p-4 bg-gray-800">
-        <AdComponent />
-    </footer>
 </template>
 
 <style scoped></style>
