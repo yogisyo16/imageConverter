@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import type { CompressionLevel } from "../composables/ComposeUpload";
 
 export interface PreviewImage {
     url: string;
@@ -15,8 +16,12 @@ export interface UploadMultipleImagesProps {
 
 const props = defineProps<UploadMultipleImagesProps>();
 
+// Track the user's choice, defaulting to 'balanced'
+const selectedLevel = ref<CompressionLevel>("balanced");
+
+// Update your emit to pass the level back to the parent
 const emit = defineEmits<{
-    (e: "files-selected", files: File[]): void;
+    (e: "files-selected", files: File[], level: CompressionLevel): void; // Use files: File[] for the Multi version!
     (e: "delete-images"): void;
 }>();
 
@@ -56,7 +61,7 @@ const onFileChange = (event: Event) => {
         }
 
         if (validFiles.length > 0) {
-            emit("files-selected", validFiles);
+            emit("files-selected", validFiles, selectedLevel.value);
         }
 
         input.value = "";
@@ -81,12 +86,28 @@ const prevImage = () => {
         <input type="file" ref="fileInput" class="hidden" multiple
             accept=".jpg, .jpeg, .png, .heic, image/jpg, image/jpeg, image/png, image/heic" @change="onFileChange" />
 
-        <p class="font-bold text-white">Multiple Images Converter to WebP</p>
+        <p class="font-bold text-white">Image Converter to Webp</p>
 
+        <div class="flex flex-col items-center w-full max-w-sm mb-2 mt-2">
+            <label class="text-gray-300 text-sm mb-2 font-medium">1. Select Conversion Quality:</label>
+            <select 
+                v-model="selectedLevel" 
+                class="w-1/2 bg-gray-800 text-white border border-gray-600 rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                :disabled="isProcessing"
+            >
+                <option value="high">High Quality (Keeps details, larger file)</option>
+                <option value="balanced">Balanced (Recommended for web)</option>
+                <option value="extreme">Extreme (Smallest size, loses detail)</option>
+            </select>
+        </div>
+
+        <p class="text-gray-300 text-sm font-medium mt-2">2. Upload File:</p>
         <button
             class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full drop-shadow-md drop-shadow-black hover:drop-shadow-lg transition-colors disabled:bg-blue-300"
-            :disabled="isProcessing" @click="triggerFileInput">
-            {{ isProcessing ? "Converting..." : "Select Images" }}
+            :disabled="isProcessing"
+            @click="triggerFileInput"
+        >
+            {{ isProcessing ? "Converting..." : "Select New Images" }}
         </button>
 
         <div v-if="images.length > 0" class="mt-4 w-full flex flex-col items-center">

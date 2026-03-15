@@ -10,15 +10,15 @@ const { isDownloading, triggerMultipleDownloads } = useDownloadWebp();
 
 const previewImages = ref<PreviewImage[]>([]);
 const convertedFiles = ref<File[]>([]);
+import type { CompressionLevel } from "../composables/ComposeUpload";
 
-const handleImagesConversion = async (files: File[]) => {
-    // Clear previous batch if new ones are selected
+const handleImagesConversion = async (files: File[], level: CompressionLevel) => {
     clearImages();
 
-    // Process files one by one to avoid freezing the browser on heavy HEIC conversions
     for (const file of files) {
         try {
-            const webpBlob = await convertToWebP(file);
+            // Pass the level in here
+            const webpBlob = await convertToWebP(file, level);
             const webpFile = new File(
                 [webpBlob],
                 file.name.replace(/\.[^/.]+$/, "") + ".webp",

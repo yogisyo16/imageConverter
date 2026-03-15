@@ -8,9 +8,13 @@ const { convertToWebP, isProcessing } = useImageConverter();
 const { isDownloading, triggerDownload } = useDownloadWebp();
 const previewUrl = ref<string | null>(null);
 const convertedFile = ref<File | null>(null);
+import type { CompressionLevel } from "../composables/ComposeUpload"; // Import the type
 
-const handleImageConversion = async (file: File) => {
-    const webpBlob = await convertToWebP(file);
+// Update the function signature to receive the level
+const handleImageConversion = async (file: File, level: CompressionLevel) => {
+    // Pass the level into your composable
+    const webpBlob = await convertToWebP(file, level); 
+    
     const webpFile = new File(
         [webpBlob],
         file.name.replace(/\.[^/.]+$/, "") + ".webp",

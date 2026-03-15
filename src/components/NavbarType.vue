@@ -122,7 +122,7 @@ const handlePageChange = (page: string) => {
                         WebP Converter (Multiple)
                     </button>
 
-                    <button @click="handlePageChange('jpg-png')" :class="[
+                    <!-- <button @click="handlePageChange('jpg-png')" :class="[
                         currentPage === 'jpg-png'
                             ? 'bg-gray-950 text-white'
                             : 'text-gray-300 hover:bg-white/5',
@@ -136,7 +136,7 @@ const handlePageChange = (page: string) => {
                             : 'text-gray-300 hover:bg-white/5 hover:text-white',
                     ]" class="block w-full text-left rounded-md px-3 py-2 text-base font-medium transition-colors">
                         Contact
-                    </button>
+                    </button> -->
                 </div>
             </div>
         </transition>
