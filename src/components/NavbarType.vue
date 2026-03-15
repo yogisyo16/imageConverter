@@ -51,6 +51,19 @@ const handlePageChange = (page: string) => {
                         >
                             JPG to PNG
                         </button>
+                        <div class="flex pl-5">
+                            <button
+                                @click="emit('change-page', 'help')"
+                                :class="[
+                                    currentPage === 'help'
+                                        ? 'bg-gray-950 text-white'
+                                        : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                                ]"
+                                class="rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                            >
+                                Contact
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -128,6 +141,17 @@ const handlePageChange = (page: string) => {
                         class="block w-full text-left rounded-md px-3 py-2 text-base font-medium"
                     >
                         JPG to PNG
+                    </button>
+                    <button
+                        @click="handlePageChange('help')"
+                        :class="[
+                            currentPage === 'help'
+                                ? 'bg-gray-950 text-white'
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                        ]"
+                        class="rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                    >
+                        Contact
                     </button>
                 </div>
             </div>

@@ -23,6 +23,12 @@ const currentPage = ref("webp");
             >
                 Coming Soon: JPG to PNG Converter!
             </div>
+            <div
+                v-else-if="currentPage === 'help'"
+                class="text-white font-bold"
+            >
+                YOU SHALL NOT PASS!!!!!
+            </div>
         </main>
 
         <footer class="p-4 bg-gray-800">
