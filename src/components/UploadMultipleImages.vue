@@ -119,7 +119,7 @@ const prevImage = () => {
                 leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
                 
                 <div v-if="currentPreviewUrl"
-                    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+                    class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
                     @click="selectedIndex = null">
                     <div class="relative max-w-full max-h-full flex items-center justify-center">
                         
