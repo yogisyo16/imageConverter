@@ -67,7 +67,7 @@ const handlePageChange = (page: string) => {
                             </transition>
                         </Menu>
 
-                        <button @click="emit('change-page', 'jpg-png')" :class="[
+                        <!-- <button @click="emit('change-page', 'jpg-png')" :class="[
                             currentPage === 'jpg-png'
                                 ? 'bg-gray-950 text-white'
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white',
@@ -82,7 +82,7 @@ const handlePageChange = (page: string) => {
                             ]" class="rounded-md px-3 py-2 text-sm font-medium transition-colors">
                                 Contact
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
