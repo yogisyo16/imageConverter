@@ -96,7 +96,7 @@ const onFileChange = (event: Event) => {
             >
                 <div 
                     v-if="showModal && image" 
-                    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+                    class="fixed inset-0 z-100 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
                     @click="showModal = false"
                 >
                     <div class="relative max-w-full max-h-full flex items-center justify-center">
